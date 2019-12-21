@@ -26,7 +26,6 @@ for x in range(10):
         title = titles.find('span', class_="title").text
         #查找电影名
         tes = titles.find('span',class_="inq").text
-        # if te
         #查找推荐语
         comment = titles.find('span',class_="rating_num").text
         #查找评分
