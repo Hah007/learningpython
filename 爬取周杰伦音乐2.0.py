@@ -1,10 +1,21 @@
 # 直接运行代码就好
 import requests
+import openpyxl
 import time
 # 引用requests模块
 
 name='周杰伦'
 #这个歌手可以修改
+
+#准备excel表格
+wb=openpyxl.Workbook()
+sheet=wb.active
+sheet.title='music'
+sheet['A1']='歌曲名'
+sheet['B1']='所属专辑'
+sheet['C1']='播放时长'
+sheet['D1']='播放链接'
+sheet['E1']='下载地址'
 
 headers = {
     'origin':'https://y.qq.com',
@@ -17,6 +28,9 @@ headers = {
 # 伪装请求头
 
 url = 'https://c.y.qq.com/soso/fcgi-bin/client_search_cp'
+####
+####仅爬取两页，可以修改后爬取多页
+####
 for x in range(2):
     #封装参数
     params = {
@@ -53,16 +67,23 @@ for x in range(2):
     # 一层一层地取字典，获取歌单列表
     for music in list_music:
     # list_music是一个列表，music是它里面的元素
-        print(music['name'])
-        # 以name为键，查找歌曲名
-        print('所属专辑：'+music['album']['name'])
-        # 查找专辑名
-        print('播放时长：'+str(music['interval'])+'秒')
-        # 查找播放时长
-        print('播放链接：https://y.qq.com/n/yqq/song/'+music['mid']+'.html')
-        # 查找播放链接
-        #下载地址
-        print('下载地址：'+music['url']+'\n')
+        name=music['name']
+        # 以name为键，查找歌曲名，把歌曲名赋值给nam
+        album=music['album']['name']
+        # 查找专辑名，把专辑名赋给album
+        time1=music['interval']
+        # 查找播放时长，把时长赋值给time
+        link1='https://y.qq.com/n/yqq/song/' + str(music['mid']) + '.html'
+        # 查找播放链接，把链接赋值给link
+        link2=music['url']
+        sheet.append([name,album,time1,link1,link2])
+        # 把name、album、time和link写成列表，用append函数多行写入Excel
+
+        print('歌曲名：' + name + '\n' + '所属专辑:' + album +'\n' + '播放时长:' + str(time1) + '\n' + '播放链接:'+ link1+'播放地址：'+link2+'\n')
+        
     
     #暂停1秒
     time.sleep(1)
+    
+wb.save('Jay.xlsx')
+

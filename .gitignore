@@ -1,0 +1,7 @@
+.autogit
+imag
+Facedata
+face_trainer
+haarcascade_frontalface_default.xml
+*.csv
+*.xlsx
