@@ -53,5 +53,5 @@ if __name__ == '__main__':
     down()
     seth(90)  
     draw(100)
-    # time.sleep(2)
-    w.exitonclick()
+    time.sleep(3)
+  
