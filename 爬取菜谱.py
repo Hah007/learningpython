@@ -1,5 +1,6 @@
 import requests
 # 引用requests库
+import csv
 from bs4 import BeautifulSoup
 # 引用BeautifulSoup库
 
@@ -30,3 +31,12 @@ for food in list_foods:
 
 print(list_all)
 # 打印
+
+
+def save_csv(list):
+    with open('caipu.csv','w',newline='',encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerows(list)
+    print('csv文件保存成功......')
+
+save_csv(list_all)

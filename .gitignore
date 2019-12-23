@@ -1,1 +1,11 @@
+<<<<<<< HEAD
 work.eps
+=======
+.autogit
+imag
+Facedata
+face_trainer
+haarcascade_frontalface_default.xml
+*.csv
+*.xlsx
+>>>>>>> 570a9f30451294d0f34cd7e1946077d5eec01054
