@@ -16,7 +16,7 @@ datalist = res.json()
 #获取第一条城市信息
 #只查了一个城市时没有意义这句话
 data = datalist['HeWeather6'][0]
-# print(json.dumps(datalist, sort_keys=True, indent=4, separators=(', ', ': ')))
+print(json.dumps(datalist, sort_keys=True, indent=4, separators=(', ', ': ')))
 
 for i in range(3):
     #输出城市信息
