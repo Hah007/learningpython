@@ -11,12 +11,15 @@ def get_content(url):
         response = requests.get(url,headers={'User-Agent':user_agent})
         response.raise_for_status()     # 如果返回的状态码不是200，则抛出异常
         # response.encoding = response.apparent_encoding      # 根据响应信息判断网页的编码格式，便于response.text知道如何解码
-        #需要研究
+        rscode = response.encoding
+        #研究结论：本项目encoding 比 apparent_encoding 准确
+       
     except Exception as e:
         print('爬取错误')
     else:
         print('爬取成功')
-        return response.text
+        # print(response.text)
+        return response.text,rscode
 
 def parser_content(content):
     bs_foods = BeautifulSoup(content,'html.parser')
@@ -42,12 +45,12 @@ def parser_content(content):
         # 食材，使用[1:-1]切掉了多余的信息
         list_all.append([name,URL,ingredients])
         # 将菜名、URL、食材，封装为列表，添加进list_all
-    print(list_all)
+    # print(list_all)
     return list_all
     
 
-def save_csv(list):
-    with open('caipu22.csv','w',encoding='utf-8') as f:
+def save_csv(list,rscode):
+    with open('caipu22.csv','w',encoding=rscode) as f:
         writer = csv.writer(f)
         writer.writerow('热门菜谱')
         writer.writerows(list)
@@ -55,6 +58,7 @@ def save_csv(list):
 
 if __name__ == '__main__':
     url='http://www.xiachufang.com/explore/'
-    content = get_content(url)
+    content,rscode = get_content(url)
+    print(rscode)
     food=parser_content(content)
-    save_csv(food)
+    save_csv(food,rscode)

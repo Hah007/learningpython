@@ -1,25 +1,46 @@
+# import requests
+# from bs4 import BeautifulSoup
+# import json
+
+# url='https://www.zhihu.com/people/zhang-jia-wei/posts/posts_by_votes'
+# headers = {
+#         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+#         ' AppleWebKit/537.36 (KHTML, like Gecko)'
+#         ' Chrome/73.0.3683.86 Safari/537.36'
+#     }
+# params={
+#     'include':'data[*].comment_count,suggest_edit,is_normal,thumbnail_extra_info,thumbnail,can_comment,comment_permission,admin_closed_comment,content,voteup_count,created,updated,upvoted_followees,voting,review_info,is_labeled,label_info;data[*].author.badge[?(type=best_answerer)].topics',
+#     'offset':'10',
+#     'limit':'20',
+#     'sort_by':'voteups',
+# }
+
+# #确认请求成功  
+# articles=res.json()
+# #用json()方法去解析response对象，并赋值到变量articles上面。
+# print(articles)
+# #打印这个json文件
 import requests
-import re,time
+#引入requests
+headers={'user-agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
+#封装headers
+url='https://www.zhihu.com/api/v4/members/zhang-jia-wei/articles?'
+#写入网址
+params={
+    'include':'data[*].comment_count,suggest_edit,is_normal,thumbnail_extra_info,thumbnail,can_comment,comment_permission,admin_closed_comment,content,voteup_count,created,updated,upvoted_followees,voting,review_info,is_labeled,label_info;data[*].author.badge[?(type=best_answerer)].topics',
+    'offset':'10',
+    'limit':'20',
+    'sort_by':'voteups',
+    }
+#封装参数
+# res=requests.get(url,headers=headers,params=params)
+# #发送请求，并把响应内容赋值到变量res里面
 
-
-item = 'zhengzhou'
-url = 'https://free-api.heweather.com/s6/weather/forecast?location=%s&key=a46fd5c4f1b54fda9ee71ba6711f09cd'%(item)
-#now	实况天气
-#forecast	3-10天预报  
-#key 需要自己申请，这个是暂时使用
-res = requests.get(url)
-time.sleep(2)
-
-#使用json格式获取数据
-datalist = res.json()
-#获取第一条城市信息
-data = datalist['HeWeather6'][0]
-for i in range(3):
-    #输出城市信息
-    print('城市：',data['basic']['location'])
-    print('维度：',data['basic']['lat'],'经度:',data['basic']['lon'])
-    print('日期：',data['daily_forecast'][i]['date'])
-    print('温度：',data['daily_forecast'][i]['tmp_min'],' ~ ',data['daily_forecast'][i]['tmp_max'])
-    print('天气：',data['daily_forecast'][i]['cond_txt_d'],' ~ ',data['daily_forecast'][i]['cond_txt_n'])
-    print(data['daily_forecast'][i]['wind_dir'],data['daily_forecast'][i]['wind_sc'],"级")
-    print("-"*60)
+res=requests.get(url,params=params,headers=headers)
+print(res.status_code)
+print(res.status_code)
+#确认请求成功  
+articles=res.json()
+#用json()方法去解析response对象，并赋值到变量articles上面。
+print(articles)
+#打印这个json文件
