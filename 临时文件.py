@@ -1,31 +1,50 @@
-import requests
-import re,time
-import json
+#coding=utf-8
+'''
+Description: Word文件转化TXT文本
+Author：伏草惟存
+Prompt: code in Python3 env
+Install package： pip install pypiwin32
+'''
 
-item = 'zhengzhou'
-ii=input('输入查询的城市：')
-if ii!='':
-    item=ii
+import os,fnmatch
+from win32com import client as wc
+from win32com.client import Dispatch
+
+'''
+功能描述：word文件转存txt文件，默认存储当前路径下；用户可以指定存储文件路径。
+参数描述：1 filePath：文件路径 2 savePath： 指定保存路径
+'''
+def Word2Txt(filePath,savePath=''):
+        
+
+    # 1 切分文件上级目录和文件名
+    dirs,filename = os.path.split(filePath)
+    # print(dirs,'\n',filename)
+
+    # 2 修改转化后的文件名
+    new_name = ''
+    if fnmatch.fnmatch(filename,'*.doc'):
+        new_name = filename[:-4]+'.txt'
+    elif fnmatch.fnmatch(filename,'*.docx'):
+        new_name = filename[:-5]+'.txt'
+    else: return
+    print('->',new_name)
+
+    # 3 文件转化后的保存路径
+    if savePath=='': savePath = dirs
+    else: savePath = savePath
+    word_to_txt = os.path.join(savePath,new_name)
+    print('->',word_to_txt)
+
+    # 4 加载处理应用,word转化txt
+    wordapp = wc.Dispatch('Word.Application')
+    mytxt = wordapp.Documents.Open(filePath)
+    mytxt.SaveAs(word_to_txt,17)
+    mytxt.Close()
+
+
+
+if __name__ == '__main__':
+    filename=os.path.abspath(r'../word文件/郸城县建业润城花园A区结构会审建议.doc')
     
-url = 'https://free-api.heweather.com/s6/weather/forecast?location=%s&key=c3fe7421ef4c4cdd85b2965e563af7ae'%(item)
-#now	实况天气
-#forecast	3-10天预报  
-#账号 hah007@126.com
-res = requests.get(url)
-time.sleep(2)
-
-#使用json格式获取数据
-datalist = res.json()
-# print(datalist)
-#获取第一条城市信息
-data = datalist['HeWeather6'][0]
-# print(json.dumps(datalist, sort_keys=True, indent=4, separators=(', ', ': ')))
-for i in range(3):
-    #输出城市信息
-    print('城市：',data['basic']['location'])
-    print('纬度：',data['basic']['lat'],'经度:',data['basic']['lon'])
-    print('日期：',data['daily_forecast'][i]['date'])
-    print('温度：',data['daily_forecast'][i]['tmp_min'],' ~ ',data['daily_forecast'][i]['tmp_max'])
-    print('天气：',data['daily_forecast'][i]['cond_txt_d'],' ~ ',data['daily_forecast'][i]['cond_txt_n'])
-    print(data['daily_forecast'][i]['wind_dir'],data['daily_forecast'][i]['wind_sc'],"级")
-    print("-"*60)
+    Word2Txt(filename)
