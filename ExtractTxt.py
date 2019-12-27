@@ -1,8 +1,8 @@
 #coding=utf-8
 '''
 Description: 多文档格式转换工具
-Author：伏草惟存
-Prompt: code in Python3 env
+Author：hah007
+Prompt: code in Python3.7
 '''
 
 import os,fnmatch
@@ -59,7 +59,7 @@ def TranType(filename,typename):
             new_name = filename[:-5]+'.txt'
         else: return
     else:
-        print('警告：\n您输入[',typename,']不合法，本工具支持pdf/doc/docx格式,请输入正确格式。')
+        print('警告：\n您输入[',typename,']不合法，本工具仅支持pdf/doc/docx格式,请输入正确格式。')
         return
     return new_name
 
@@ -72,32 +72,32 @@ if __name__ == '__main__':
     # filePath3 = os.path.abspath(r’../dataSet/Corpus/wordtotxt/科技项目数据挖掘决策架构.docx’)
     Files2Txt(filePath2)
  
- '''
- #转化代码含义：
-    wdFormatDocument                    =  0
-    wdFormatDocument97                  =  0
-    wdFormatDocumentDefault             = 16
-    wdFormatDOSText                     =  4
-    wdFormatDOSTextLineBreaks           =  5
-    wdFormatEncodedText                 =  7
-    wdFormatFilteredHTML                = 10
-    wdFormatFlatXML                     = 19
-    wdFormatFlatXMLMacroEnabled         = 20
-    wdFormatFlatXMLTemplate             = 21
-    wdFormatFlatXMLTemplateMacroEnabled = 22
-    wdFormatHTML                        =  8
-    wdFormatPDF                         = 17
-    wdFormatRTF                         =  6
-    wdFormatTemplate                    =  1
-    wdFormatTemplate97                  =  1
-    wdFormatText                        =  2
-    wdFormatTextLineBreaks              =  3
-    wdFormatUnicodeText                 =  7
-    wdFormatWebArchive                  =  9
-    wdFormatXML                         = 11
-    wdFormatXMLDocument                 = 12
-    wdFormatXMLDocumentMacroEnabled     = 13
-    wdFormatXMLTemplate                 = 14
-    wdFormatXMLTemplateMacroEnabled     = 15
-    wdFormatXPS                         = 18
+'''
+转化代码含义：
+wdFormatDocument                    =  0
+wdFormatDocument97                  =  0
+wdFormatDocumentDefault             = 16
+wdFormatDOSText                     =  4
+wdFormatDOSTextLineBreaks           =  5
+wdFormatEncodedText                 =  7
+wdFormatFilteredHTML                = 10
+wdFormatFlatXML                     = 19
+wdFormatFlatXMLMacroEnabled         = 20
+wdFormatFlatXMLTemplate             = 21
+wdFormatFlatXMLTemplateMacroEnabled = 22
+wdFormatHTML                        =  8
+wdFormatPDF                         = 17
+wdFormatRTF                         =  6
+wdFormatTemplate                    =  1
+wdFormatTemplate97                  =  1
+wdFormatText                        =  2
+wdFormatTextLineBreaks              =  3
+wdFormatUnicodeText                 =  7
+wdFormatWebArchive                  =  9
+wdFormatXML                         = 11
+wdFormatXMLDocument                 = 12
+wdFormatXMLDocumentMacroEnabled     = 13
+wdFormatXMLTemplate                 = 14
+wdFormatXMLTemplateMacroEnabled     = 15
+wdFormatXPS                         = 18
 '''
