@@ -2,8 +2,8 @@
 
 """
 Description: 批量文档格式自动转化txt
-Author：伏草惟存
-Prompt: code in Python3 env
+Author：hah007
+Prompt: code in Python3.7
 """
 
 import ExtractTxt as ET
@@ -51,6 +51,8 @@ class TraversalFun():
             # 核心算法，对文件具体操作
             if os.path.isfile(path):
                 self.func(os.path.abspath(path),os.path.abspath(save_dir))
+                print(self.func(os.path.abspath(path),os.path.abspath(save_dir)))
+                
 
             # 递归遍历文件目录
             if os.path.isdir(path):
@@ -66,10 +68,11 @@ if __name__ == '__main__':
     time_start=time.time()
 
     # 根目录文件路径
-    rootDir = r"../dataSet/Corpus/EnPapers"
+    rootDir = r"../word文件"
     # saveDir = r"./Corpus/TxtEnPapers"
+    #保存目录，可以自定义的
     tra=TraversalFun(rootDir,ET.Files2Txt) # 默认方法参数打印所有文件路径
     tra.TraversalDir()                   # 遍历文件并进行相关操作
 
     time_end=time.time()
-    print('totally cost',time_end-time_start,'s')
+    print('全部转换完成……',time_end-time_start,'s')
