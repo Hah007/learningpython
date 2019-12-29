@@ -23,20 +23,25 @@ def get_cookies(cookie_raw):
 
 
 if __name__ == '__main__':
-    raw_headers = '''Accept: application/json, text/javascript, */*; q=0.01
-    Accept-Encoding: gzip, deflate, br
-    Accept-Language: zh-CN,zh;q=0.9
-    Connection: keep-alive
-    Content-Length: 0
-    Cookie: WWWID=WWW85B39E3AE7522AAA7411F2E057AC9874; Hm_lvt_22ea01af58ba2be0fec7c11b25e88e6c=1577248153; Hm_lpvt_22ea01af58ba2be0fec7c11b25e88e6c=1577248153
-    Host: www.kuaidi100.com
-    Origin: https://www.kuaidi100.com
-    Referer: https://www.kuaidi100.com/?from=openv
-    Sec-Fetch-Mode: cors
-    Sec-Fetch-Site: same-origin
-    User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36
-    X-Requested-With: XMLHttpRequest'''
-    
+    raw_headers = '''accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3
+accept-encoding: gzip, deflate, br
+accept-language: zh-CN,zh;q=0.9
+cache-control: max-age=0
+content-length: 45
+content-type: application/x-www-form-urlencoded
+cookie: Hm_lvt_32da9a91d04e7f7f3eca588f6f08a0ae=1577601258; jieqiVisitId=article_articleviews%3D351; PHPSESSID=1b9d18e661bdf59dfe4c93ce94de24af; jieqiUserInfo=jieqiUserId%3D146194%2CjieqiUserName%3Dhah007%2CjieqiUserGroup%3D3%2CjieqiUserName_un%3Dhah007%2CjieqiUserLogin%3D1577601363; jieqiVisitInfo=jieqiUserLogin%3D1577601363%2CjieqiUserId%3D146194; Hm_lpvt_32da9a91d04e7f7f3eca588f6f08a0ae=1577601375
+origin: https://www.xslou.com
+referer: https://www.xslou.com/yuedu/351/
+sec-fetch-mode: navigate
+sec-fetch-site: same-origin
+sec-fetch-user: ?1
+upgrade-insecure-requests: 1'''
+
+    raw_headers = '''
+    username: hah007
+password: hellohh
+action: login
+    '''
     
     
     # raw_headers = '''Host: open.tool.hexun.com
