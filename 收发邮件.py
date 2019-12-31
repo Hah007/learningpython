@@ -6,7 +6,7 @@ from email.header import Header
 
 # 发信的邮箱SMTP配置
 smtp_server = 'smtp.qq.com'
-port = '465'
+port = '25'
 # 发信的邮箱和授权码
 username = '6973858@qq.com'
 password = 'zntuizltafjjbhjg'
@@ -32,9 +32,18 @@ msg['Subject'] = Header('python自动发送')
 # server = smtplib.SMTP_SSL()   
 # server.connect(smtp_server,port)
 #以上两个都不行，按下面这个可以通过
-server = smtplib.SMTP_SSL(smtp_server)
+
+# qqmail = smtplib.SMTP_SSL(smtp_server)
+qqmail = smtplib.SMTP()
+qqmail.connect(smtp_server,port)
 
 # 登陆发信邮箱
-server.login(username, password)
-server.sendmail(from_addr, to_addrs, msg.as_string())
-server.quit()
+qqmail.login(username, password)
+
+try:
+    qqmail.sendmail(from_addr, to_addrs, msg.as_string())
+    print ('邮件发送成功')
+except:
+    print ('邮件发送失败')
+qqmail.quit()
+#以上为发送邮件和退出邮箱。
