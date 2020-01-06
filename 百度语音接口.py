@@ -7,6 +7,7 @@ import json
 import base64
 import os
 from aip import AipSpeech
+from playsound import playsound
 
 def Gettokent():
     baidu_server = "https://openapi.baidu.com/oauth/2.0/token?"
@@ -78,7 +79,9 @@ def BaiduYuYin(token1,fileurl):
 if __name__ == '__main__':
     print('程序运行中……')
     fileurl='16k.wav'
-    token1=Gettokent()
-    res=BaiduYuYin(token1,fileurl)
-    print(res)
-    tts_baidu('我从哪里来')
+    # token1=Gettokent()
+    # res=BaiduYuYin(token1,fileurl)
+    # print(res)
+    text='商业项目是指能挣钱的项目，和它对应的就是些不以挣钱为目的的学习项目或毕业设计项目。'
+    tts_baidu(text)
+    playsound('audio.mp3')
