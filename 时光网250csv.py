@@ -16,8 +16,9 @@ writer.writerow(['序号 ', '电视剧名', '导演', '主演', '简介'])
 
 headers={'user-agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
 url_list = ['http://www.mtime.com/top/tv/top100/']
+url_1='http://www.mtime.com/top/tv/top100/index-{page}.html'
 for x in range(2,11):
-    url = 'http://www.mtime.com/top/tv/top100/index-' + str(x) + '.html'
+    url = url_1.format( page=x)
     url_list.append(url)
 work = Queue()
 #创建队列对象，并赋值给work。
@@ -30,7 +31,7 @@ def crawler():
     #当队列不是空的时候，就执行下面的程序。
         url = work.get_nowait()
         #用get_nowait()函数可以把队列里的网址都取出。
-        r = requests.get(url)
+        r = requests.get(url, headers=headers)
         #用requests.get()函数抓取网址。
         print(url,work.qsize(),r.status_code)
         #打印网址、队列长度、抓取请求的状态码。
@@ -59,7 +60,7 @@ def crawler():
 tasks_list  = [ ]
 #创建空的任务列表
 for x in range(5):
-#相当于创建了2个爬虫
+#相当于创建了5个爬虫
     task = gevent.spawn(crawler)
     #用gevent.spawn()函数创建执行crawler()函数的任务。
     tasks_list.append(task)
