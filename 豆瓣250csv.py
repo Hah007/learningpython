@@ -6,8 +6,6 @@ fl=open('douban250.csv','w', newline='',encoding='utf-8')
 writer=csv.writer(fl)
 writer.writerow(['序号 ', '电影名', '评分', '推荐语', '播放地址'])
 
-
-
 headers={'user-agent':'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36'}
 for x in range(10):
     try:
