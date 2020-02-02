@@ -59,7 +59,7 @@ def job():
     print('任务完成')
 
 if __name__ == '__main__':
-    schedule.every().day.at("23:35").do(job) 
+    schedule.every().day.at("10:55").do(job) 
     while True:
         schedule.run_pending()
         time.sleep(1)
