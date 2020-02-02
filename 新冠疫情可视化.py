@@ -14,13 +14,13 @@ table = json.loads(f"{html}")
 pp = pprint.PrettyPrinter(indent=4)
 data=[]
 for province in table['data']['list']:
-    pp.pprint(province)
-    data.append((province['name'], province['value']))
- 
-    for city in province['city']:
-      pp.pprint(city)
+      pp.pprint(province)
+      data.append((province['name'], province['value']))
+
+      # for city in province['city']:
+         # pp.pprint(city)
 map_p = Map()
-map_p.set_global_opts(title_opts=opts.TitleOpts(title="实时疫情图"), visualmap_opts=opts.VisualMapOpts(max_=100))
+# map_p.set_global_opts(title_opts=opts.TitleOpts(title="实时疫情图"), visualmap_opts=opts.VisualMapOpts(max_=100))
 map_p.add("确诊", data, maptype="china")
-map_p.render("ncov.html") # 生成html文件
+map_p.render("ncov.html")  # 生成html文件
 

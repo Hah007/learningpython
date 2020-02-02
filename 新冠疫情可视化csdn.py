@@ -92,7 +92,7 @@ def plot_daily():
     plt.legend(loc='upper center')
 
     # 展示图形
-    plt.show()
+    # plt.show()
     # 保存图形为图片,第一个参数保存路径，第二个参数裁掉多余的空白部分
     plt.savefig('2019-nCoV疫情变化时间图.png', bbox_inches='tight')
 
@@ -169,7 +169,6 @@ def plot_distribution():
     axes.legend(handles, labels, bbox_to_anchor=(0.5, -0.11), loc='lower center', ncol=4, prop=font)
     axes.set_title("2019-nCoV疫情地图", fontproperties=font)
     FigureCanvasAgg(fig)
-    fig.show()
     fig.savefig('2019-nCoV疫情地图.png')
 
 if __name__ == '__main__':
